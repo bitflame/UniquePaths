@@ -7,10 +7,10 @@ namespace UniquePaths
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
             string[] products = { "mobile", "mouse", "moneypot", "monitor", "mousepad" };
             string searchWord = "mouse";
             SuggestedProducts(products, searchWord);
+            Console.ReadLine();
             
             products = new string [] { "havana" };
             searchWord = "tatiano";
@@ -95,46 +95,56 @@ namespace UniquePaths
             return paths[height-1, width-1]; 
         }
         //This method provides a solution to the problem of Search Suggestions System problem on LeetCode 
-        private static string[] SuggestedProducts (string[] products, string searchWord)
+        private static void SuggestedProducts (string[] products, string searchWord)
         {
             Stack<string> results = new Stack<string>();
+            
             if (products == null || products.Length == 0)
             {
-                return null;
+                Console.WriteLine("List of products is empty!");
             }
             Array.Sort(products);
             if (string.IsNullOrEmpty(searchWord))
             {
-                return results.ToArray();
+                Console.WriteLine("SearchWord is empty!");
             }
-
-            if (results.Count == 3)
+            //for (int i = 0; i < products.Length; i++)
+            //{
+            //    for (int j = 1; j < searchWord.Length; j++)
+            //    {
+            //        if ((searchWord.Substring(0, j) == products[i].Substring(0, j))  && (!results.Contains(products[i])))
+            //        {
+            //            //Console.WriteLine($"Pushing {products[i]} for {searchWord.Substring(0, j)}" );
+            //            results.Push(products[i]);
+            //            PrintStack(results);
+            //        }
+            //    }
+                
+            //}
+            for (int i = 0; i < searchWord.Length; i++)
             {
-                return results.ToArray();
-            }
-            for (int i = 0; i < products.Length; i++)
-            {
-                for (int j = 0; j < searchWord.Length; j++)
+                for (int j = 0; j < products.Length; j++)
                 {
-                    if (searchWord.Substring(i, j - i) == products[i].Substring(i, j - i))
+                    if ((searchWord.Substring(0, i) == products[j].Substring(0, i)) && (!results.Contains(products[j])))
                     {
                         results.Push(products[i]);
                     }
-                    else
-                        results.Clear();
                 }
+                PrintStack(results);
+                results.Clear();
             }
-                
-            return results.ToArray();
+            
         }
-        private static Stack<string> ReturnFirstThree(string [] s)
+        private static void PrintStack(Stack<string> s)
         {
-            Stack<string> temp = new Stack<string>();
-            for (int i = 0; i < 2; i++)
+            Console.WriteLine("Called Print Stack after a match: ");
+            int i = 2;
+            while ( s.Count > 0 && i > 0)
             {
-                temp.Push(s[i]);
+                Console.WriteLine(s.Pop());
+                i--;
             }
-            return temp;
+           
         }
     }
 }
