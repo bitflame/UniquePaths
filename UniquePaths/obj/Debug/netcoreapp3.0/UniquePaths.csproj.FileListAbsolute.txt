@@ -1,0 +1,11 @@
+C:\Users\usr\source\repos\UniquePaths\UniquePaths\bin\Debug\netcoreapp3.0\UniquePaths.exe
+C:\Users\usr\source\repos\UniquePaths\UniquePaths\bin\Debug\netcoreapp3.0\UniquePaths.deps.json
+C:\Users\usr\source\repos\UniquePaths\UniquePaths\bin\Debug\netcoreapp3.0\UniquePaths.runtimeconfig.json
+C:\Users\usr\source\repos\UniquePaths\UniquePaths\bin\Debug\netcoreapp3.0\UniquePaths.runtimeconfig.dev.json
+C:\Users\usr\source\repos\UniquePaths\UniquePaths\bin\Debug\netcoreapp3.0\UniquePaths.dll
+C:\Users\usr\source\repos\UniquePaths\UniquePaths\bin\Debug\netcoreapp3.0\UniquePaths.pdb
+C:\Users\usr\source\repos\UniquePaths\UniquePaths\obj\Debug\netcoreapp3.0\UniquePaths.csprojAssemblyReference.cache
+C:\Users\usr\source\repos\UniquePaths\UniquePaths\obj\Debug\netcoreapp3.0\UniquePaths.AssemblyInfoInputs.cache
+C:\Users\usr\source\repos\UniquePaths\UniquePaths\obj\Debug\netcoreapp3.0\UniquePaths.AssemblyInfo.cs
+C:\Users\usr\source\repos\UniquePaths\UniquePaths\obj\Debug\netcoreapp3.0\UniquePaths.dll
+C:\Users\usr\source\repos\UniquePaths\UniquePaths\obj\Debug\netcoreapp3.0\UniquePaths.pdb
