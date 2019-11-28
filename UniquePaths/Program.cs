@@ -7,18 +7,53 @@ namespace UniquePaths
     {
         static void Main(string[] args)
         {
+            if (args.Length > 0)
+            {
+                Console.WriteLine("Some arguments were passed to program");
+
+                foreach (var item in args)
+                {
+                    Console.WriteLine(item);
+                }
+            }
             string[] products = { "mobile", "mouse", "moneypot", "monitor", "mousepad" };
             string searchWord = "mouse";
             SuggestedProducts(products, searchWord);
+            //SuggestedProdTrie(products, searchWord);
             Console.ReadLine();
-            
             products = new string [] { "havana" };
             searchWord = "tatiano";
             SuggestedProducts(products, searchWord);
-
+            //SuggestedProdTrie(products, searchWord);
+            Console.ReadLine();
             products = new string[] { "bags", "bagage", "banner", "box", "cloths" };
             searchWord = "bags";
             SuggestedProducts(products, searchWord);
+            //SuggestedProdTrie(products, searchWord);
+            Console.ReadLine();
+        }
+        private static void SuggestedProdTrie(string [] prods, string s)
+        {
+            Trie t = new Trie();
+            Queue<string> q = new Queue<string>();
+            foreach (var item in prods)
+            {
+                t.Insert(item);
+            }
+
+            //which words in trie start with substrings of s?
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (t.StartsWith(s.Substring(0,i)) && (!q.Contains(s)))
+                {
+                    q.Enqueue(s);
+                }
+                if (q.Count > 0)
+                {
+                    PrintQueue(q);
+                    q.Clear();
+                } 
+            }
         }
         // This method provides a solution to the Unique Paths problem on LeetCode
         private static int UniquePaths(int m, int n)
@@ -97,7 +132,7 @@ namespace UniquePaths
         //This method provides a solution to the problem of Search Suggestions System problem on LeetCode 
         private static void SuggestedProducts (string[] products, string searchWord)
         {
-            Stack<string> results = new Stack<string>();
+            Queue<string> results = new Queue<string>();
             
             if (products == null || products.Length == 0)
             {
@@ -108,6 +143,7 @@ namespace UniquePaths
             {
                 Console.WriteLine("SearchWord is empty!");
             }
+            #region
             //for (int i = 0; i < products.Length; i++)
             //{
             //    for (int j = 1; j < searchWord.Length; j++)
@@ -119,32 +155,64 @@ namespace UniquePaths
             //            PrintStack(results);
             //        }
             //    }
-                
+
             //}
-            for (int i = 0; i < searchWord.Length; i++)
+            #endregion
+            for (int i = 1; i < searchWord.Length; i++)
             {
                 for (int j = 0; j < products.Length; j++)
                 {
                     if ((searchWord.Substring(0, i) == products[j].Substring(0, i)) && (!results.Contains(products[j])))
                     {
-                        results.Push(products[i]);
+                        results.Enqueue(products[j]);
+                        if (results.Count == 3)
+                        {
+                            PrintQueue(results);
+                            results.Clear();
+                            continue;
+                        } if ( j > 2 && results.Count < 3)
+                        {
+                          
+                            results.Clear();
+                        }
                     }
+                    else results.Clear();
                 }
-                PrintStack(results);
+                PrintQueue(results);
                 results.Clear();
             }
-            
         }
-        private static void PrintStack(Stack<string> s)
+        private static void PrintQueue(Queue<string> s)
         {
             Console.WriteLine("Called Print Stack after a match: ");
-            int i = 2;
+            int i = 3;
             while ( s.Count > 0 && i > 0)
             {
-                Console.WriteLine(s.Pop());
+                Console.WriteLine(s.Dequeue());
                 i--;
             }
-           
+            s.Clear();
+        }
+        private static int gcd( int p, int q)
+        {
+            if (q == 0)
+            {
+                return q;
+            }
+            int r = p % q;
+            return gcd(q, r);
+        }
+        private static int Rank (int key , int [] a)
+        {
+            return Rank(key, a, 0, a.Length - 1);
+        }
+        private static int Rank ( int key, int [] a, int lo, int hi)
+        {
+            if (lo > hi) return -1;
+            int mid = lo + (hi - lo) / 2;
+            if (key < a[mid]) return Rank(key, a, lo, mid - 1);
+            else if (key > a[mid]) return Rank(key, a, mid + 1, hi);
+            else return mid;
         }
     }
 }
