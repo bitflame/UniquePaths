@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace UniquePaths
 {
@@ -16,21 +18,93 @@ namespace UniquePaths
                     Console.WriteLine(item);
                 }
             }
-            string[] products = { "mobile", "mouse", "moneypot", "monitor", "mousepad" };
-            string searchWord = "mouse";
-            SuggestedProducts(products, searchWord);
+            //string[] products = { "mobile", "mouse", "moneypot", "monitor", "mousepad" };
+            //string searchWord = "mouse";
+            //SuggestedProducts(products, searchWord);
             //SuggestedProdTrie(products, searchWord);
-            Console.ReadLine();
-            products = new string [] { "havana" };
-            searchWord = "tatiano";
-            SuggestedProducts(products, searchWord);
+            //PrintIList(SuggestedProductsList(products, searchWord));
+
+            //Console.ReadLine();
+            //products = new string [] { "havana" };
+            //searchWord = "havana";
+            //SuggestedProducts(products, searchWord);
             //SuggestedProdTrie(products, searchWord);
-            Console.ReadLine();
-            products = new string[] { "bags", "bagage", "banner", "box", "cloths" };
-            searchWord = "bags";
-            SuggestedProducts(products, searchWord);
+            //PrintIList(SuggestedProductsList(products, searchWord));
+            //Console.ReadLine();
+            //products = new string[] { "bags", "bagage", "banner", "box", "cloths" };
+            //searchWord = "bags";
+            //SuggestedProducts(products, searchWord);
             //SuggestedProdTrie(products, searchWord);
+            //PrintIList(SuggestedProductsList(products, searchWord));
+            //products = new string[] { "havana" };
+            //searchWord = "tatian";
+            //SuggestedProducts(products, searchWord);
+            //PrintIList(SuggestedProductsList(products, searchWord));
+            string [] products = new string[] {"bzmxniiktqqfvkqwsexromqdxtiyukcq", "ycbzecjhisyhoouhfortzyl", "ygctop",
+                "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycdijefnmgvnwupiacobhuwaasa", "ycbzecjhrntfpommaxoovqlad",
+                "ycbzecjhisyhoouhfpgjywknnxymifoxxftskhjnlkhhzuuwcrmbviaiszkjalbwpsxtxtxi",
+                "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquapzvxzdzvfcd", "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrzhkfakjrtwlpqjaqugrcfpdlxblkd",
+                "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycongyurvtdwwsfuqaxhbzmzh", "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmdfcobjfofo",
+                "ycbzecjhisyhoouhfpwhmgumykkphmkdprnvagnkqqxaruotinxihcurnfurwd", "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycdijefnmgvnfvvrxdgagroq",
+                "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrxyjndjdamhhoujhqkmnv", "rnxymhiekecdtciyzljsvredbfyravxuxstlydnytmrfzzfvndamipbydpgeafxpcidugrk",
+                "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycdijefbcoowtqylofroxankqr", "glqrhuzrpjrecnyizjmrxngaoksjiwroxqbrhfat", "pkwbvrkxvyzhrucfzpbozzdcblfxuuoiuwsqcgtjzgsspokldamwkthfvgpe",
+                "hgea", "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzjhicejirboomjej", "gpbbhodedndicbkgfkfvoctmcrqdvlwodfdfxwxewcnutezyomlngaisazimddoodnchju",
+                "rvlmxoxecnnu", "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycdijefnmgvnwormvvwifmpopjq", "ycbzecjhisyhoouhqccxaiokxbvlvjafpzhjwybnqlkdnofrrsxisanqytatniysmsgrxysn",
+                "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycdxsbsu", "neolhhqetzuocgzbpjpfnjhej", "ycbzecjhisyhoouhfpwhmenuacmdmxanltvugdpsdejswljxuwahy",
+                "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycdijefnmgvnwupiokrknjjy", "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycdilszwhqkm",
+                "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycdgccrb", "rxxogukhwgwliclfthynwzznsjskydmrptwxclxudvpgxupqirccxnjnkovufjtifnpi",
+                "ypolovxsvjkyjexysabvmfnds", "vsonavftzgzsclndrndpiliozeghaigloabhoglcaekdfptydvzx", "ssgmdlxvfnzvnboyixpjbmmsbdalxrtcrlfkxberess",
+                "plsmpulgwdelkqgaddgzcbirremgeihyhsneajogxeqthdshc", "uathwzoqlgbiwawfkjtv", "bdfqpldpcowkfwmelawzmhiuh", "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycdijefnmgvnwupyxljnid",
+                "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycdijefnmgvnwumfbbchytgjn", "ycbzecsxxitjrdvtojdghnq", "gqeegdpwlfnzoewavhxbrysvhmsmwyvjddbnzrekepxlunnmthtkuqbmlh",
+                "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycdijefnmgvnwupixikvpqtzp", "ycbzecjhisqsgmdykndwbnitdrlvwujqlfbwrodwwdpxfyjhk", "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkryceesukrwzdjxqrowmub",
+                "qxlghnlzayqjkjkepchhrmavbudjcwlrvmdneygritodc", "ycbzecjhisyhoouhfpwhmenuacmkgvezwwkaww", "ycbzecjprgnssnrppteionmifadnvcxlfjrcrjlzxnabfohkjrhgrtues", "ycbzqsltpoknlb", "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycdibmuokmzlwns",
+                "xpvstcebzppdotgddpjwbokqewykvwjhhcreqvqhwvexguvrmzwokygggcbaf", "itkcguwbwcaofrzkwqnqpjfcqdyraasrrvhdltw", "ycbzecjhisyhoouhfpwhmenuacmdmxaqipcvf",
+                "yzmoguwvrbsudgjiobludyyugaknoneqrdwrmerlkzuurf", "ycbzecjhisyhoouhfpwhmenuacmdmxanltvqubc", "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycdijefnmgvitgnsculjgbdu", "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycdijefnmgvnwupiokrknaxajo",
+                "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmefejdgid", "ycbzewuwzwoyrhopflvic", "jckhzyizio", "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycdijefnmgvnwupiokrknjdjhjhvevzzda",
+                "ycbzecjhisyhoibdfrxocpmuvpthefvnrefc", "njehqruvwutdvxwhodxdtgogwnazabshtcwvwstrjzpgpdssewxegqpabqgsrpxx", "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycdijefnvaivkepvtjds", "ycbklminahakocicoyykeezqbljqutxospzeawgxgceltgyfsgw",
+                "ycbzecjhisyhoouhfpwhmenuacmdmubiflysjnzqyooavocawdizcqqtohmkrwvtpopbsr", "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycdijefntvcvqtqdzmtuirnqcmg",
+                "ycbzecjhcpldzpapvglvptfnswnplksmnmdoefaav", "yqafbqaijojacoackombhbfpcrqwzwljxqgrfpbwikkjrkdekwwnmbrsmhymd", "ycbzecjhisyhoouhfpwhmenuacmdmxanltvqk",
+                "ycbzecjhisyhoouhftyeaihzngufxiialkrqdrdsp", "ycbzecjhisykjcoaepugqrmdjfbpiqdctj", "iiqbxuscnh", "ycbrfrbzwprfhmsndzuubtgboyldulgiabtebkswpwmbabtbmtmfznidglrwchyxkmhgxurvp",
+                "q", "ycbzecjhisyhoouhfpwhmenuacmdmxanltvqsvpjgqlvanjyhanqoramjkswtaeamnqrpzafkm", "ycbzecjhisyhoouhfpwhmenuacmdmygdyfcxtxybjubcvziqiuzzsqauecemeysq",
+                "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycdijefnmgvnwuprzmyzxusebjomjzio", "hjpjumazhsiilwekmdpqvnbhliuumkejzsdtvevnrwpwyavoubodouhnravmjzhfayvqo",
+                "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycdijklk", "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycdijefnmgvnwupiokrknjdjhbqbatvpk",
+                "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrytctexaysoaoqnpgnszrcntlmzglsc", "ycbzecjhisyhoouhfpwhmenuacmdxsqqjuhdfxcqaagpblrifb",
+                "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycxmmjjeywhoborve", "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycdiacwecuqqryhaziponiiqd",
+                "whfrprddxee", "ycbzkfknyzwscujsthypqivldiojswgwpusgzpxaiwgyfulneqcrd", "ycbzecjhisyhoouhfpwhmenuacmdmfydulceawrnutnfivcmjsjp", "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycdijzuyyvjmdmf",
+                "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycdijefnmgvnwupiokrknjdjhjhccvz", "ycbzecjhisyhoouhfpwhmenuacmdmxanltvqdfigrlnlqcfbaqrmmpzwmavyhfiyjgrrxaslo", "ycbbafznoukqqjhhjwawiwxfqvvjmwpzbpibptcdz",
+                "skdirrwhwhjaeaxtolgpjjlaavsvitor", "gcobfvazxvgvidlc", "ycbzecjhisyhoouhfpwhmenuacmdmxanltftwdhzsejemxmqttddecbgv", "lhqrepbjsgagqxtblaiidazxwtadqscmiy", "qem", "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycdijefnmgvnwupiokrknjdjhjhvevma",
+                "ycbzecjhisyhovcadwoqhuajkjasiowetnhzr", "htrrlfotlacghwspiraamhoxjresvifibr", "hlvmbtqcueklhitzpednxdvvvhuomoxiufhfuxfv", "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycdijefnmgvnwupioaxkrnoiwecxcqfq",
+                "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycdirnnfftkgdblgbardczsfbf", "mdhqrhnlrnysmrzyxwnxtvxwxbmctmixfuzxiujygucougz", "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycdijefnmgttrdunheoizrftuibbaldl",
+                "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrkdwonbhmkfcripehnexdohhlrame", "ycbzerxeljqomsjokbjgpf", "lymd", "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycdijefnuxygupkdc",
+                "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycdijefnmgvnwupzwmuiajderwuxbnoj", "ycbzcfmhlxrpybwjvkxmyqbplbqwaltieaakwohskypjkupqibhdnyqxdkdieuyqqnedhlc", "prpyyw",
+                "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycdijefnmgvnwupiorarzdj", "sxctepuuechbpng", "tedzzdeiypfxtykewqerwmyitqsu", "ycbzecjhisygupqwagxkveguwspzswydiscardgbimtta",
+                "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycdijefnmgvnwupiojaeuihsshn", "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycdijefnmgvnrmhkjhod", "ycbzecjhisynlnzep",
+                "ycbzecjhisyhoouhfpwhmenuacmdmwepwulcuqnxsaxklscmrkrtoz", "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycdijefnmgvnwupiokrknjdjhjhvevzzdu", "eumjfvvfdakqniggsrkfzxvrvpbjjblicfaikzdmdzqwazmqevntbeltgjkgkfjwvu",
+                "qyudfnvducnlmhacxkhwjenragbpi", "mknzrufygfrxednjqgtmlfsqiezielegmfoumrvkmgttudykdwexwxdwrpai", "yywptuqwpzqofegwjnpklalxeggtnujtjhiaoktukxmoanpfqd", "ktglb", "nloznzyjuhacfqgyosikzlwtrf",
+                "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycdijefnmgvnwupiokrkvcu", "ycbzecjhisyhoouhfpwhwpqcgebgqloyurxzhqcdczgviyzwuxyiy", "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycdijbyrgksmaquozlbz",
+                "ycbzecjhibadsyfqsqdxs", "vrjretvdnszghjxsvstxluvboaxlyerohosoyoqblsschdadkneiatqb", "ycbzecjhisyhoouhfpwhmenuacmdmxanltvqfqqtqodqwtqhheptbghjttbpnuajj",
+                "mttxerjvtwrptrpopvasiewfihcytfvaicdzgirelprdvfrvyxkdxon", "ycbzecjhisyhoouhfpwhmenuackqhohkwvfjdejdfccyigaidemehmyghbeyefvxbrtepvkxup",
+                "ycbzecjhisyhoouhfpwosrclautsovprmlwit", "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkryjrzbeoeqcwmtcpkke"};
+            string searchWord = "ycbzecjhisyhoouhfpwhmenuacmdmxanltvquzmkrycdijefnmgvnwupiokrknjdjhjhvevzzdcclntpgkxfqvyncruttucrtsyegslpneczsxwsdhrwgcrostsxdyxieytrqgzrgougekwrvnryqqewdhvtvwjbhhulnawlzjvcsmn";
+            PrintIList(SuggestedProductsList(products, searchWord));
             Console.ReadLine();
+        }
+        private static void PrintIList(IList<IList<string>> mList)
+        {
+            foreach (var item in mList)
+            {
+                for (int i = 0; i < 3 || i < item.Count; i++)
+                {
+                    try
+                    {
+                        Console.WriteLine(item[i]);
+                    }
+                    catch(ArgumentOutOfRangeException)
+                    {
+                        break;
+                    }
+                }
+            }
         }
         private static void SuggestedProdTrie(string [] prods, string s)
         {
@@ -129,6 +203,44 @@ namespace UniquePaths
             }
             return paths[height-1, width-1]; 
         }
+        private static IList<IList<string>> SuggestedProductsList (string [] products, string searchWord)
+        { 
+            List<IList<string>> rList = new List<IList<string>>();
+            string[] matches = new string[] { "" };
+            if (products == null || products.Length == 0)
+            {
+                Console.WriteLine("List of products is empty!");
+                return rList;
+            }
+            Array.Sort(products);
+            for (int i = 1; i <= searchWord.Length; i++)
+            {
+                matches = new string[products.Length];
+                int k = 0;
+                for (int j = 0; j < products.Length && k < 3; j++)
+                {
+                    try
+                    {
+                        if ((products[j].Length >= i && searchWord.Substring(0, i) == products[j].Substring(0, i)) &&
+                            (!matches.Contains(products[j])))
+                        {
+                            matches[k] = products[j];
+                            k++;
+                        }  
+                    }
+                    catch (ArgumentOutOfRangeException err)
+                    {
+                        Console.WriteLine(err.Message);
+                        continue;
+                    }  
+                }
+                //Cars = Cars.Where(c => c != null).ToArray();
+                
+                matches = matches.Where(c => c != null).ToArray();
+                rList.Add(matches);
+            }
+            return rList;
+        }
         //This method provides a solution to the problem of Search Suggestions System problem on LeetCode 
         private static void SuggestedProducts (string[] products, string searchWord)
         {
@@ -158,25 +270,23 @@ namespace UniquePaths
 
             //}
             #endregion
-            for (int i = 1; i < searchWord.Length; i++)
+            for (int i = 1; i <= searchWord.Length; i++)
             {
                 for (int j = 0; j < products.Length; j++)
                 {
-                    if ((searchWord.Substring(0, i) == products[j].Substring(0, i)) && (!results.Contains(products[j])))
-                    {
-                        results.Enqueue(products[j]);
-                        if (results.Count == 3)
+                    try { 
+                        if ((searchWord.Substring(0, i) == products[j].Substring(0, i)) && (!results.Contains(products[j])))
+                    
                         {
-                            PrintQueue(results);
-                            results.Clear();
-                            continue;
-                        } if ( j > 2 && results.Count < 3)
-                        {
-                          
-                            results.Clear();
+                        
+                            results.Enqueue(products[j]);   
                         }
+                    } catch (ArgumentOutOfRangeException err)
+                    {
+                        Console.WriteLine(err.Message);
+                        continue;
                     }
-                    else results.Clear();
+                    
                 }
                 PrintQueue(results);
                 results.Clear();
@@ -184,7 +294,7 @@ namespace UniquePaths
         }
         private static void PrintQueue(Queue<string> s)
         {
-            Console.WriteLine("Called Print Stack after a match: ");
+            Console.WriteLine($"{s.Count} matches");
             int i = 3;
             while ( s.Count > 0 && i > 0)
             {
